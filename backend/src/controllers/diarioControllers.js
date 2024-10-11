@@ -1,9 +1,10 @@
 import  * as diario from "../repository/diarioRepository.js";
+import { autenticar } from "../utils/jws.js";
 import { Router } from "express";
 
 const endpoints = Router();
 
-endpoints.get("/diario", async (req, resp) => {
+endpoints.get("/diario", autenticar, async (req, resp) => {
     try{
         let idUsuario = req.user.id
         let info = await diario.getDiario(idUsuario);
@@ -16,7 +17,7 @@ endpoints.get("/diario", async (req, resp) => {
     }
 });
 
-endpoints.post("/diario", async (req, resp) => { 
+endpoints.post("/diario", autenticar, async (req, resp) => { 
   try
   {
     let segredo = req.body;
@@ -32,7 +33,7 @@ catch (err) {
     }
 });
 
-endpoints.put("/diario/:id", async (req, resp) => {      
+endpoints.put("/diario/:id", autenticar ,async (req, resp) => {      
     
 try{
     let segredo = req.body;
@@ -50,7 +51,7 @@ try{
     
 });
 
-endpoints.delete("/diario/:id", async (req, resp) => {
+endpoints.delete("/diario/:id", autenticar, async (req, resp) => {
     try{
         let id = req.params.id;
 
