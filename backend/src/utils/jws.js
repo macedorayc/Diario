@@ -3,8 +3,6 @@ const KEY = '===!!Diario=='
                   
 
 
-
-
 export function gerarToken(userInfo) {
   return jwt.sign(userInfo, KEY)
 }

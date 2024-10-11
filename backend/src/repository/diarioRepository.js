@@ -1,13 +1,13 @@
-import e from "express";
+
 import con from "./connection.js";
 
 
 export async function getDiario(){
-let comando = `SELECT * FROM tb_diario WHERE `
+let comando = `SELECT * FROM tb_diario WHERE id_usuario = ?`;
 
 let resultado = await con.query(comando);
 
-let info = resultado[0];
+let info = resultado[0][0];
 
 return info;
 

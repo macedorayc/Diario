@@ -1,14 +1,33 @@
-import * as usuario from "../repository/usuarioRepository.js";
+import * as db from "../repository/usuarioRepository.js";
 import { Router } from "express";
+import { gerarToken } from "../utils/jws.js";
 
 const endpoints = Router();
 
 endpoints.get("/usuario", async (req, resp) => {
-    try{
+    try {
 
-        let usuario = req.body.usuario;
-        let senha = req.body.senha;
-        let info = await usuario.getUsuario(usuario, senha);
+        let usuario = req.body;
+
+        let info = await db.getUsuario(usuario);
+
+        if (!usuario && !senha || usuario == null) {
+
+            resp.send({
+                erro: 'Usuario ou senha incorretos '
+            })
+
+        }
+        else {
+           let token = gerarToken(info)
+
+           resp.send({
+            'token':token
+           })
+        }
+
+
+
 
         resp.status(200).send();
     }
@@ -18,3 +37,22 @@ endpoints.get("/usuario", async (req, resp) => {
         })
     }
 });
+
+endpoints.post("/usuario",  async (req, resp) => {
+    try
+    {
+        let usuario = req.body;
+  
+      let id = await db.postUsuario(usuario)
+  
+      resp.status(200).send({id:id});
+      }
+  catch (err) {
+          resp.status(400).send({
+              erro: err.message
+          })
+      }
+  });
+  
+
+  export default endpoints;
