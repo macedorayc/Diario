@@ -1,3 +1,5 @@
+CREATE DATABASE db_diario;
+
 
 use db_diario;
 
