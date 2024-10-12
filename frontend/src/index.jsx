@@ -17,7 +17,7 @@ root.render(
         <Route path='/' element={<Inicio/>} />
         <Route path='/conteudo' element={<Diario />} />
         <Route path='/conteudo/:id' element={<Diario />} />
-        <Route path='/consulta' element={<Consulta />} />
+        <Route path='/consultar' element={<Consulta />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

@@ -9,7 +9,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 export default function Diario() {
     const [token, setToken] = useState(null);
 
-    const [nome, setNome] = useState('');
+
     const [dia, setDia] = useState('');
     const [conteudo, setConteudo] = useState('');
     
@@ -19,8 +19,8 @@ export default function Diario() {
     const { id } = useParams();
 
     async function salvar() {
-        let paramCorpo = {
-            "nome": nome,
+        let segredo = {
+          
             "dia": dia,
             "conteudo": conteudo
         }
@@ -28,27 +28,29 @@ export default function Diario() {
         if (id == undefined) {
           
             const url = `http://localhost:5010/diario?x-access-token=${token}`;
-            let resp = await axios.post(url, paramCorpo);
-            alert('Novo conteudo adicionado no Diario. Id: ' + resp.data.novoId);
+            let resp = await axios.post(url,segredo);
+            alert('Novo conteudo adicionado no Diario. Id: ' + resp.data.id);
         } else {
            
             const url = `http://localhost:5010/diario/${id}?x-access-token=${token}`;
-            let resp = await axios.put(url, paramCorpo);
+            let resp = await axios.put(url, segredo);
             alert('Conteudo alterado no diario.');
         }
     }
 
     async function consultar(token) {
-        if (id != undefined) {
+        if (id !== undefined) {
             const url = `http://localhost:5010/diario/${id}?x-access-token=${token}`;
-            let resp = await axios.get(url);
-            let dados = resp.data;
-
-            let data = moment(dados.dia).format('YYYY-MM-DD')
-            console.log(data)
-
-            setNome(dados.nome)
-            setDia(dados.dia)
+            
+                let resp = await axios.get(url);
+                let dados = resp.data;
+    
+                let data = moment(dados.dia).format('YYYY-MM-DD');
+                setDia(data); 
+                setConteudo(dados.conteudo); 
+           
+        } else {
+            alert("ID não definido. Não é possível consultar.");
         }
     }
 
@@ -65,18 +67,12 @@ export default function Diario() {
 
     return (
         <div className='pagina-diario'>
-            <button className='but'><Link to={'/diario'}>Voltar</Link></button>
+            <button className='but'><Link to={'/consultar'}>Voltar</Link></button>
             <h1>{id ? 'EDITAR' : 'DIARIO'}</h1>
 
 
             <div className='form'>
-                <div>
-                    <label>Nome:</label>
-                    <input
-                        type='text'
-                        value={nome}
-                        onChange={e => setNome(e.target.value)} />
-                </div>
+            
                 <div>
                     <label>Dia:</label>
                     <input

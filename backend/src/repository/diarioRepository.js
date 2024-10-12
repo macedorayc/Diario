@@ -1,5 +1,7 @@
 import con from "./connection.js";
 
+
+
 export async function getDiario(idUsuario) {
     let comando = `SELECT * FROM tb_diario WHERE usuario = ?`;
     let resultado = await con.query(comando, [idUsuario]);
@@ -25,9 +27,11 @@ export async function updateDiario(segredo, id) {
 }
 
 export async function deleteDiario(id) {
-    let comando = `DELETE FROM tb_diario WHERE usuario = ?`;
+    let comando = `DELETE FROM tb_diario WHERE diario = ?`; 
     let resultado = await con.query(comando, [id]);
     let info = resultado[0];
 
     return info.affectedRows;
 }
+
+
