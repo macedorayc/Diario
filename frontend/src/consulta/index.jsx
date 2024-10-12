@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 
 
-export default function Consulta() {
+export default function Consultar() {
     const [token, setToken] = useState(null);
     const [diario, setDiario] = useState([]);
 
@@ -54,7 +54,6 @@ export default function Consulta() {
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Nome</th>
                         <th>Dia</th>
                         <th>Conteudo</th>
                     </tr>
@@ -64,11 +63,10 @@ export default function Consulta() {
                     {diario.map(item => 
                         <tr>
                             <td>{item.id}</td>
-                            <td>{item.nome}</td>
                             <td>{new Date(item.dia).toLocaleDateString()}</td>
                             <td>{item.conteudo}</td>
                             <td>
-                                <Link to={`/conteudo/${item.id}`}>Alterar</Link>
+                            <Link to={`/conteudo/${item.id}`}>Alterar</Link>
                                 <Link onClick={() => excluir(item.id)}>Deletar</Link>
                             </td>
                         </tr>

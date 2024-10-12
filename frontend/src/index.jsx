@@ -4,7 +4,7 @@ import './index.scss';
 
 import { BrowserRouter, Routes, Route} from 'react-router-dom';
 import Diario from './diario';
-import Consulta from './consulta';
+import Consultar from './consulta';
 import Inicio from './app';
 
 
@@ -17,7 +17,7 @@ root.render(
         <Route path='/' element={<Inicio/>} />
         <Route path='/conteudo' element={<Diario />} />
         <Route path='/conteudo/:id' element={<Diario />} />
-        <Route path='/consultar' element={<Consulta />} />
+        <Route path='/consultar' element={<Consultar />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

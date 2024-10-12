@@ -10,9 +10,9 @@ export default function Diario() {
     const [token, setToken] = useState(null);
 
 
-    const [dia, setDia] = useState('');
+    const [data, setData] = useState('');
     const [conteudo, setConteudo] = useState('');
-    
+
 
     const navigate = useNavigate()
 
@@ -20,38 +20,37 @@ export default function Diario() {
 
     async function salvar() {
         let segredo = {
-          
-            "dia": dia,
+
+            "data": data,
             "conteudo": conteudo
         }
-        
+
         if (id == undefined) {
-          
+
             const url = `http://localhost:5010/diario?x-access-token=${token}`;
-            let resp = await axios.post(url,segredo);
+            let resp = await axios.post(url, segredo);
             alert('Novo conteudo adicionado no Diario. Id: ' + resp.data.id);
         } else {
-           
+
             const url = `http://localhost:5010/diario/${id}?x-access-token=${token}`;
-            let resp = await axios.put(url, segredo);
+            await axios.put(url, segredo);
             alert('Conteudo alterado no diario.');
         }
     }
 
     async function consultar(token) {
-        if (id !== undefined) {
+        if (id != undefined) {
             const url = `http://localhost:5010/diario/${id}?x-access-token=${token}`;
-            
-                let resp = await axios.get(url);
-                let dados = resp.data;
-    
-                let data = moment(dados.dia).format('YYYY-MM-DD');
-                setDia(data); 
-                setConteudo(dados.conteudo); 
-           
-        } else {
-            alert("ID não definido. Não é possível consultar.");
+
+            let resp = await axios.put(url);
+            let dados = resp.data;
+
+            let datas = moment(dados.data).format('YYYY-MM-DD');
+            setData(datas);
+            setConteudo(dados.conteudo);
+
         }
+       
     }
 
     useEffect(() => {
@@ -72,13 +71,13 @@ export default function Diario() {
 
 
             <div className='form'>
-            
+
                 <div>
                     <label>Dia:</label>
                     <input
                         type='date'
-                        value={dia}
-                        onChange={e => setDia(e.target.value)} />
+                        value={data}
+                        onChange={e => setData(e.target.value)} />
                 </div>
                 <div>
                     <label>Conteudo:</label>
