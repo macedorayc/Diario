@@ -1,7 +1,13 @@
 import con from "./connection.js";
 
 export async function getUsuario(usuario){
-let comando = `SELECT * FROM tb_usuario WHERE nm_usuario = ? AND senha = ?`;
+let comando = `    select 
+id_usuario id,
+nm_usuario nome
+from tb_usuario 
+where 
+nm_usuario = ?
+and ds_senha = ?`;
 
 let resultado = await con.query(comando , [usuario.usuario, senha.senha]);
 

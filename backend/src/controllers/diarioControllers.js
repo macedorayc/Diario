@@ -21,6 +21,7 @@ endpoints.post("/diario", autenticar, async (req, resp) => {
   try
   {
     let segredo = req.body;
+    segredo.idUsuario = req.user.id;
 
     let id = await diario.postDiario(segredo);
 
