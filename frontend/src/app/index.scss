@@ -1,0 +1,25 @@
+.pagina-inicio {
+  padding: 50px;
+  margin: 100px 500px ;
+  background-color: rgb(246, 180, 250);
+  border-radius: 20px;
+
+  .campo {
+      display: flex;
+      flex-direction: column;
+      width: 250px;
+      margin-bottom: 12px;
+
+      label {
+          font-size: 22px;
+          font-weight: bold;
+      }
+
+      input {
+          font-size: 18px;
+          padding: 6px;
+          margin-top: 8px;
+          border-radius: 20px;
+      }
+  }
+}
