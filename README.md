@@ -11,9 +11,15 @@ CREATE TABLE tb_usuario (
 
 
 CREATE TABLE tb_diario (
-    id_diario INT PRIMARY KEY AUTO_INCREMENT,
-    dt_dia DATE,
-    ds_conteudo VARCHAR(400),
-    id_usuario INT,
-    FOREIGN KEY (id_usuario) REFERENCES tb_usuario(id_usuario)
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    dia DATE,
+    conteudo VARCHAR(400),
+    usuario INT,
+    FOREIGN KEY (usuario) REFERENCES tb_usuario(id_usuario)
 );
+
+INSERT INTO tb_usuario (nm_usuario, ds_senha)
+VALUE ('admin', '1234');
+
+
+select * from tb_diario;
