@@ -56,6 +56,7 @@ export default function Consultar() {
                         <th>ID</th>
                         <th>Dia</th>
                         <th>Conteudo</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
 
