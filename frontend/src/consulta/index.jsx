@@ -48,7 +48,7 @@ export default function Consultar() {
             <h1> CONSULTAR </h1>
 
             <button onClick={buscar}>Buscar</button>
-            <button><Link to={'/conteudo'}>Diario</Link></button>
+            <button><Link to={'/conteudo'} className='butom'>Diario</Link></button>
 
             <table>
                 <thead>
