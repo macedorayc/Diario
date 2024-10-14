@@ -38,7 +38,7 @@ export default function Diario() {
         }
     }
 
-    async function consultar(token) {
+    async function alterar(token) {
         if (id != undefined) {
             const url = `http://localhost:5010/diario/${id}?x-access-token=${token}`;
 
@@ -61,7 +61,7 @@ export default function Diario() {
             navigate('/')
         }
 
-        consultar(token);
+        alterar(token);
     }, [])
 
     return (
